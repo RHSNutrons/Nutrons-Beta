@@ -32,7 +32,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 package org.firstinspires.ftc.robotcontroller.internal;
 
 import com.google.blocks.ftcrobotcontroller.runtime.BlocksOpMode;
-import com.qualcomm.hardware.adafruit.BNO055IMU;
 import com.qualcomm.robotcore.eventloop.opmode.OpModeManager;
 import com.qualcomm.robotcore.eventloop.opmode.OpModeRegister;
 import com.qualcomm.robotcore.eventloop.opmode.AnnotatedOpModeRegistrar;
@@ -56,7 +55,7 @@ public class FtcOpModeRegister implements OpModeRegister {
      *  2) The other, retired,  method is to modify this {@link #register(OpModeManager)}
      *  method to include explicit calls to OpModeManager.register().
      *  This method of modifying this file directly is discouraged, as it
-     *  makes updates to the SDK harder to integrate into your code.
+     *  makes updates to the SDK harder to integrate into your 3code.
      *
      * @param manager the object which contains methods for carrying out OpMode registrations
      *
@@ -65,8 +64,10 @@ public class FtcOpModeRegister implements OpModeRegister {
      */
     public void register(OpModeManager manager) {
 
-        manager.register new Corvette();
-        /**
+        manager.register("Corvette", Corvette.class);
+
+
+       /**
          * Register OpModes implemented in the Blocks visual programming language.
          */
         BlocksOpMode.registerAll(manager);
