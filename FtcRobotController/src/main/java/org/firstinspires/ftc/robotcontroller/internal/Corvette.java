@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.robotcontroller.internal;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -7,15 +7,16 @@ import com.qualcomm.robotcore.hardware.DcMotorController;
 /**
  * Created by khenr on 9/21/2016.
  */
-public abstract class  Corvette extends OpMode {
+ public class Corvette extends OpMode{
     public DcMotorController dc_drive__controller;
 
     public DcMotor side1Motor;
     public DcMotor side2Motor;
     public DcMotor side3Motor;
 
+
     @Override
-    public void int() {
+    public void init() {
         dc_drive__controller = hardwareMap.dcMotorController.get("drive_controller");
         side1Motor = hardwareMap.dcMotor.get("side1");
         side2Motor = hardwareMap.dcMotor.get("side2");
