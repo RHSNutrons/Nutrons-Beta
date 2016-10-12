@@ -47,8 +47,9 @@ public class TestMaxSpeed extends LinearOpMode
     {
     // All hardware variables can only be initialized inside the main() function,
     // not here at their member variable declarations.
-    DcMotor motorLeft = null;
-    DcMotor motorRight = null;
+    DcMotor leftMotor = null;
+    DcMotor rightMotor = null;
+        DcMotor backMotor = null;
 
     @Override
     public void runOpMode() throws InterruptedException
@@ -56,17 +57,21 @@ public class TestMaxSpeed extends LinearOpMode
         // Initialize our hardware variables. Note that the strings used here as parameters
         // to 'get' must correspond to the names you assigned during the robot configuration
         // step you did in the FTC Robot Controller app on the phone.
-        this.motorLeft = this.hardwareMap.dcMotor.get("motorLeft");
-        this.motorRight = this.hardwareMap.dcMotor.get("motorRight");
+        this.leftMotor = this.hardwareMap.dcMotor.get("motorLeft");
+        this.rightMotor = this.hardwareMap.dcMotor.get("motorRight");
+            this.backMotor = this.hardwareMap.dcMotor.get("motorFront'pk");
 
         // Configure the knobs of the hardware according to how you've wired your robot.
         DcMotor.RunMode mode = DcMotor.RunMode.RUN_USING_ENCODER;
-        this.motorLeft.setMode(mode);
-        this.motorRight.setMode(mode);
+        this.leftMotor.setMode(mode);
+        this.rightMotor.setMode(mode);
+            this.backMotor.setMode(mode);
 
         // One of the two motors (here, the left) should be set to reversed direction
         // so that it can take the same power level values as the other motor.
-        this.motorLeft.setDirection(DcMotor.Direction.REVERSE);
+        this.leftMotor.setDirection(DcMotor.Direction.REVERSE);
+            this.backMotor.setDirection(DcMotor.Direction.FORWARD);
+
 
         // Wait until we've been given the ok to go
         this.waitForStart();
@@ -75,16 +80,18 @@ public class TestMaxSpeed extends LinearOpMode
         for (int degreesPerSecond = 300; degreesPerSecond <= 1000; degreesPerSecond += 100)
             {
             int ticksPerSecond = ticksPerSecFromDegsPerSec(degreesPerSecond);
-            this.motorLeft.setMaxSpeed(ticksPerSecond);
-            this.motorRight.setMaxSpeed(ticksPerSecond);
+            this.leftMotor.setMaxSpeed(ticksPerSecond);
+            this.rightMotor.setMaxSpeed(ticksPerSecond);
+                this.backMotor.setMaxSpeed(ticksPerSecond);
 
             telemetry.addData("deg/s", degreesPerSecond);
             telemetry.addData("ticks/s", ticksPerSecond);
             updateTelemetry(telemetry);
 
             // Drive for a while, then stop
-            this.motorLeft.setPower(1);
-            this.motorRight.setPower(1);
+            this.rightMotor.setPower(1);
+            this.rightMotor.setPower(1);
+                this.backMotor.setPower(1);
 
             long msDeadline = System.currentTimeMillis() + 3000;
             while (System.currentTimeMillis() < msDeadline)
@@ -92,13 +99,16 @@ public class TestMaxSpeed extends LinearOpMode
                 Thread.yield();
                 telemetry.addData("deg/s",   degreesPerSecond);
                 telemetry.addData("ticks/s", ticksPerSecond);
-                telemetry.addData("left",    motorLeft.getCurrentPosition());
-                telemetry.addData("right",   motorRight.getCurrentPosition());
+                telemetry.addData("left",    leftMotor.getCurrentPosition());
+                telemetry.addData("right",   rightMotor.getCurrentPosition());
+                telemetry.addData("back",     backMotor.getCurrentPosition());
                 updateTelemetry(telemetry);
                 }
 
-            this.motorRight.setPower(0);
-            this.motorLeft.setPower(0);
+            this.rightMotor.setPower(0);
+            this.leftMotor.setPower(0);
+            this.backMotor.setPower(0);
+
 
             Thread.sleep(3000);
             }
@@ -115,5 +125,4 @@ public class TestMaxSpeed extends LinearOpMode
 
         return encoderTicksPerRevolution * degreesPerSecond / degreesPerRevolution;
         }
-
     }
