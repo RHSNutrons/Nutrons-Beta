@@ -32,16 +32,17 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 package org.firstinspires.ftc.robotcontroller.internal;
 
 import com.google.blocks.ftcrobotcontroller.runtime.BlocksOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.AnnotatedOpModeRegistrar;
 import com.qualcomm.robotcore.eventloop.opmode.OpModeManager;
 import com.qualcomm.robotcore.eventloop.opmode.OpModeRegister;
-import com.qualcomm.robotcore.eventloop.opmode.AnnotatedOpModeRegistrar;
+
 import org.firstinspires.ftc.robotcontroller.external.samples.ConceptNullOp;
 
 /**
  * {@link FtcOpModeRegister} is responsible for registering opmodes for use in an FTC game.
  * @see #register(OpModeManager)
  */
-public class FtcOpModeRegister implements OpModeRegister {
+public class   FtcOpModeRegister implements OpModeRegister {
 
     /**
      * {@link #register(OpModeManager)} is called by the SDK game in order to register
@@ -64,14 +65,11 @@ public class FtcOpModeRegister implements OpModeRegister {
      */
     public void register(OpModeManager manager) {
 
-        manager.register("Corvette", Corvette.class);
-
-
        /**
          * Register OpModes implemented in the Blocks visual programming language.
          */
         BlocksOpMode.registerAll(manager);
-
+        manager.register("Corvette", Corvette.class);
         /**
          * Register OpModes that use the annotation-based registration mechanism.
          */
