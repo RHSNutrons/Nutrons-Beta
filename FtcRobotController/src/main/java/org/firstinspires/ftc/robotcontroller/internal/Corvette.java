@@ -24,15 +24,15 @@ import com.qualcomm.robotcore.hardware.DcMotorController;
 
     @Override
     public void loop() {
-        double throttle = -gamepad1.left_stick_y;
+        double throttle = gamepad1.left_stick_y;
         double direction = -gamepad1.left_stick_x;
 
         double right = Math.sin(30)*throttle - Math.cos(30)*direction;
         double left = Math.sin(30)*throttle + Math.cos(30)*direction;
-        double back = direction;
+        double back = -direction;
 
-        rightMotor.setPower(right);
-        leftMotor.setPower(left);
+        rightMotor.setPower(2*right);
+        leftMotor.setPower(2*left);
         backMotor.setPower(back);
     }
 
