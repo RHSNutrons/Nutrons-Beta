@@ -70,6 +70,7 @@ public class   FtcOpModeRegister implements OpModeRegister {
          */
         BlocksOpMode.registerAll(manager);
         manager.register("Corvette", Corvette.class);
+
         /**
          * Register OpModes that use the annotation-based registration mechanism.
          */
