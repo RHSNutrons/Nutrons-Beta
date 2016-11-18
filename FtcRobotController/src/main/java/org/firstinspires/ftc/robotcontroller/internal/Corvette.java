@@ -20,10 +20,10 @@ import com.qualcomm.robotcore.hardware.DcMotorController;
     @Override
     public void init() {
         rightMotor = hardwareMap.dcMotor.get("rightMotor");
-        //leftMotor = hardwareMap.dcMotor.get("leftMotor");
-        //backMotor = hardwareMap.dcMotor.get("backMotor");
+        leftMotor = hardwareMap.dcMotor.get("leftMotor");
+        backMotor = hardwareMap.dcMotor.get("backMotor");
         D_angello = hardwareMap.dcMotor.get("ice in my veins");
-        //inTake = hardwareMap.dcMotor.get("Intake");
+        inTake = hardwareMap.dcMotor.get("Intake");
     }
 
     @Override
@@ -36,23 +36,23 @@ import com.qualcomm.robotcore.hardware.DcMotorController;
         double back = Math.sin(270)*direction;
 
         rightMotor.setPower(3*right);
-        //leftMotor.setPower(3*left);
-        //backMotor.setPower(3*back);
+        leftMotor.setPower(3*left);
+        backMotor.setPower(3*back);
 
-        if (gamepad1.b) {
+        if (gamepad2.b) {
             D_angello.setPower(.25); // 25 % motor speed
 
         }
-        if (gamepad1.a){
+        if (gamepad2.a){
             D_angello.setPower(.5); // 50 % motor speed
         }
-        if (gamepad1.x) {
+        if (gamepad2.x) {
             D_angello.setPower(.75); // 75 % motor speed
         }
-        if (gamepad1.y) {
+        if (gamepad2.y) {
             D_angello.setPower(1); // 100 % motor speed
         }
-        if (gamepad1.right_bumper) {
+        if (gamepad2.right_bumper) {
             D_angello.setPower(0);
         }
 
