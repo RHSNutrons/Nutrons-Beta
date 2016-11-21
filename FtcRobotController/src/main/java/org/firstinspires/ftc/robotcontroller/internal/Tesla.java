@@ -6,6 +6,7 @@ package org.firstinspires.ftc.robotcontroller.internal;
 
 public class Tesla extends Corvette {
     public void main() throws InterruptedException{
+
         // drive forward
         leftMotor.setPower(1);
         rightMotor.setPower(1);

@@ -15,6 +15,7 @@ import com.qualcomm.robotcore.hardware.DcMotorController;
     public DcMotor backMotor;
     public DcMotor D_angello;
     public DcMotor inTake;
+    public DcMotor inTake2;
 
 
     @Override
@@ -24,6 +25,7 @@ import com.qualcomm.robotcore.hardware.DcMotorController;
         backMotor = hardwareMap.dcMotor.get("backMotor");
         D_angello = hardwareMap.dcMotor.get("ice in my veins");
         inTake = hardwareMap.dcMotor.get("Intake");
+        inTake = hardwareMap.dcMotor.get("Intake2");
     }
 
     @Override
@@ -58,8 +60,11 @@ import com.qualcomm.robotcore.hardware.DcMotorController;
 
 
         // intake
+        if (gamepad2.left_trigger == 1){
+            inTake.setPower(1.0);
+        }
         if (gamepad2.right_trigger == 1){
-            //inTake.setPower(1.0);
+            inTake.setPower(1.0);
         }
     }
 
